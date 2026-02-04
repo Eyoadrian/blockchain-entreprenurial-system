@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🥩 Butcher Blockchain System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>🥩 Butcher Blockchain System</h2>
+
+<div class="card">
+  <button onclick="connect()">Connect MetaMask</button>
+  <p class="muted" id="account">Not connected</p>
+  <p class="muted" id="network"></p>
+</div>
+
+<div class="card">
+  <h3>Create Batch</h3>
+  <input id="meatType" placeholder="Meat type (e.g. Goat)" />
+  <input id="weightKg" type="number" placeholder="Weight in KG" />
+  <input id="sourceName" placeholder="Source (e.g. Kubwa Abattoir)" />
+
+  <label class="muted">Slaughter Date</label>
+  <input id="slaughterDate" type="date" />
+
+  <label class="muted">Proof (choose ONE: upload file OR type text)</label>
+  <input id="proofFile" type="file" />
+  <input id="proofText" placeholder="Or type proof text (e.g. certificate no.)" />
+
+  <button onclick="createBatch()">Create Batch</button>
+  <p class="muted" id="createMsg"></p>
+  <p class="ok" id="latestBatch"></p>
+</div>
+
+<div class="card">
+  <h3>Update Batch Status</h3>
+  <input id="batchId" type="number" placeholder="Batch ID" />
+  <select id="status">
+    <option value="0">Received</option>
+    <option value="1">Processed</option>
+    <option value="2">InStorage</option>
+    <option value="3">ForSale</option>
+    <option value="4">SoldOut</option>
+  </select>
+  <button onclick="updateStatus()">Update Status</button>
+  <p class="muted" id="statusMsg"></p>
+</div>
+
+<div class="card">
+  <h3>Create Receipt (Sell Meat)</h3>
+  <input id="rBatchId" type="number" placeholder="Batch ID" />
+  <input id="qtyKg" type="number" placeholder="Quantity KG" />
+  <button onclick="createReceipt()">Create Receipt</button>
+  <p class="muted" id="receiptMsg"></p>
+  <p class="ok" id="latestReceipt"></p>
+</div>
+
+<div class="card">
+  <h3>Batch List</h3>
+  <button class="secondary" onclick="loadBatches()">Load / Refresh Batches</button>
+  <p class="muted" id="batchListMsg"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Meat</th>
+        <th>KG Left</th>
+        <th>Source</th>
+        <th>Slaughter Date</th>
+        <th>Freshness</th>
+        <th>Status</th>
+        <th>Use</th>
+      </tr>
+    </thead>
+    <tbody id="batchTableBody">
+      <tr>
+        <td colspan="8" class="muted">No batches loaded.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h3>Get Batch</h3>
+  <input id="checkBatchId" type="number" placeholder="Batch ID" />
+  <button onclick="getBatch()">Get Batch</button>
+  <pre id="batchOut"></pre>
+</div>
+
+<div class="card">
+  <h3>Get Receipt</h3>
+  <input id="checkReceiptId" type="number" placeholder="Receipt ID" />
+  <button onclick="getReceipt()">Get Receipt</button>
+  <pre id="receiptOut"></pre>
+</div>
+
+<!-- Web3 library -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+
+<!-- Your app logic -->
+<script src="butcher.js"></script>
+
+</body>
+</html>
