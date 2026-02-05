@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🥩 Customer Meat Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>🥩 Customer Verification</h2>
+
+<div class="card">
+  <p class="muted">
+    Enter a Batch ID (or scan a QR code). This page reads data directly from the blockchain (Sepolia).
+  </p>
+  <p class="muted" id="netMsg">Connecting to Sepolia…</p>
+</div>
+
+<div class="card">
+  <h3>Verify Batch</h3>
+  <input id="batchId" type="number" placeholder="Batch ID (e.g. 1)" />
+  <button onclick="verifyBatch()">Verify</button>
+  <p class="muted" id="msg"></p>
+
+  <div id="result" style="display:none;">
+    <table>
+      <tbody>
+        <tr><th>Batch ID</th><td id="r_id"></td></tr>
+        <tr><th>Meat Type</th><td id="r_meat"></td></tr>
+        <tr><th>KG Left</th><td id="r_kg"></td></tr>
+        <tr><th>Source</th><td id="r_source"></td></tr>
+        <tr><th>Slaughter Date</th><td id="r_date"></td></tr>
+        <tr><th>Freshness</th><td id="r_fresh"></td></tr>
+        <tr><th>Status</th><td id="r_status"></td></tr>
+        <tr><th>Proof Hash</th><td id="r_hash" style="font-family: monospace; font-size: 12px;"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Web3 library -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+
+<!-- Your JS logic -->
+<script src="customer.js"></script>
+
+</body>
+</html>
